@@ -1,0 +1,68 @@
+---
+interface Props {
+	title: string;
+	description: string;
+	icon?: string; // Optional: Path to an SVG icon or class for an icon font
+  href: string;
+}
+
+const { title, description, icon, href } = Astro.props;
+---
+<a href={href} class="service-card glassmorphism">
+  {icon && (
+    <div class="icon-wrapper">
+      <!-- Basic SVG Placeholder - Replace with actual icons -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 L2 7 L12 12 L22 7 Z"></path><path d="M2 17 L12 22 L22 17"></path><path d="M2 12 L12 17 L22 12"></path></svg>
+    </div>
+  )}
+  <h3 class="card-title">{title}</h3>
+  <p class="card-description">{description}</p>
+  <span class="card-link">Saiba Mais &rarr;</span>
+</a>
+
+<style>
+  .service-card {
+    display: block; /* Make the whole card clickable */
+    padding: var(--space-lg);
+    text-decoration: none;
+    color: var(--color-text-primary);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Glassmorphism applied via global class */
+    overflow: hidden; /* Ensure content respects border-radius */
+  }
+
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .icon-wrapper {
+    margin-bottom: var(--space-md);
+    color: var(--color-accent); /* Color the icon */
+  }
+
+  .card-title {
+    font-size: 1.25rem; /* ~20px */
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-xs);
+    color: var(--color-text-primary);
+  }
+
+  .card-description {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-md);
+  }
+
+  .card-link {
+    display: inline-block;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-accent);
+    transition: transform 0.2s ease;
+  }
+
+  .service-card:hover .card-link {
+    text-decoration: underline;
+    transform: translateX(3px);
+  }
+</style>

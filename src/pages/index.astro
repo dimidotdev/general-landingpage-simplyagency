@@ -1,0 +1,113 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+---
+
+<Layout title="Soluções Tecnológicas para PMEs">
+	<main>
+    <!-- Hero Section -->
+    <section class="hero-section container text-center">
+      <h1 class="hero-title">Transformando Ideias em <span class="text-accent">Soluções Digitais</span> Inovadoras</h1>
+      <p class="hero-subtitle">Desenvolvimento de software sob medida, IA e design estratégico para impulsionar o crescimento da sua PME.</p>
+      <a href="/contato" class="cta-button">Solicite uma Consulta Gratuita</a>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section container">
+      <h2 class="section-title text-center">Nossas Soluções</h2>
+      <div class="services-grid">
+        <ServiceCard
+          title="SaaS Personalizado"
+          description="Plataformas robustas e escaláveis, criadas especificamente para as necessidades do seu negócio."
+          href="/servicos/saas-personalizado"
+          icon="icon-saas"
+        />
+        <ServiceCard
+          title="Agentes de IA"
+          description="Automatize tarefas, obtenha insights e melhore a eficiência com soluções de inteligência artificial."
+          href="/servicos/agentes-ia"
+          icon="icon-ai"
+        />
+        <ServiceCard
+          title="Websites e Aplicações Web"
+          description="Criação de websites institucionais, e-commerces e aplicações web focadas em performance e UX."
+          href="/servicos/websites"
+          icon="icon-web"
+        />
+         <ServiceCard
+          title="Branding e Design"
+          description="Construímos identidades visuais marcantes que conectam sua marca ao seu público."
+          href="/servicos/branding-design"
+          icon="icon-design"
+        />
+      </div>
+    </section>
+
+    <!-- Optional: Client Logos/Testimonials Section -->
+    <!--
+    <section class="social-proof container text-center">
+      <h2 class="section-title">Empresas que Confiam em Nós</h2>
+      <div class="client-logos">
+         Logos here
+      </div>
+    </section>
+    -->
+
+	</main>
+</Layout>
+
+<style>
+  .hero-section {
+    padding: var(--space-xl) 0;
+    margin-bottom: var(--space-xl);
+  }
+
+  .hero-title {
+    font-size: 3rem; /* ~48px */
+    margin-bottom: var(--space-md);
+    line-height: 1.1;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem; /* ~20px */
+    color: var(--color-text-secondary);
+    max-width: 700px;
+    margin: 0 auto var(--space-lg);
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: var(--space-sm) var(--space-lg);
+    font-size: 1.1rem;
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    /* Uses global button styles */
+  }
+
+  .services-section {
+    padding: var(--space-xl) 0;
+  }
+
+  .section-title {
+    margin-bottom: var(--space-xl);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+    .hero-subtitle {
+      font-size: 1.1rem;
+    }
+    .services-grid {
+      grid-template-columns: 1fr; /* Stack cards on mobile */
+    }
+  }
+</style>

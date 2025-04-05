@@ -1,0 +1,92 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Sobre Nós">
+  <main class="container">
+    <section class="about-intro text-center">
+      <h1>Nossa Missão: Inovação e Parceria</h1>
+      <p class="lead">Somos apaixonados por tecnologia e dedicados a criar soluções que geram valor real para pequenas e médias empresas.</p>
+    </section>
+
+    <section class="mission-vision">
+      <div class="grid">
+        <div class="item">
+          <h3>Missão</h3>
+          <p>Capacitar PMEs com tecnologia de ponta, desenvolvendo software e soluções digitais personalizadas que impulsionam o crescimento, a eficiência e a inovação.</p>
+        </div>
+        <div class="item">
+          <h3>Visão</h3>
+          <p>Ser a parceira tecnológica de referência para PMEs, reconhecida pela excelência, confiabilidade e pelo impacto positivo nos negócios de nossos clientes.</p>
+        </div>
+        <div class="item">
+          <h3>Valores</h3>
+          <ul>
+            <li>✓ Parceria e Colaboração</li>
+            <li>✓ Inovação Contínua</li>
+            <li>✓ Qualidade e Excelência</li>
+            <li>✓ Transparência e Confiança</li>
+            <li>✓ Foco no Cliente</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="history-team">
+      <h2>Nossa Jornada</h2>
+      <p>Fundada em [Ano], nossa empresa nasceu da visão de [Fundadores/Motivação]. Desde então, temos trabalhado incansavelmente para...</p>
+      <p>Nossa equipe é composta por especialistas em [Áreas de Expertise], unidos pelo propósito de entregar resultados excepcionais...</p>
+      <!-- Add more details about history or team -->
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .about-intro {
+    margin-bottom: var(--space-xl);
+  }
+
+  .lead {
+    font-size: 1.2rem;
+    color: var(--color-text-secondary);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .mission-vision {
+    margin-bottom: var(--space-xl);
+    background-color: var(--color-surface);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+  }
+
+  .mission-vision .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .mission-vision h3 {
+    color: var(--color-accent);
+    margin-bottom: var(--space-sm);
+  }
+
+  .mission-vision ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .mission-vision li {
+    margin-bottom: var(--space-xs);
+    color: var(--color-text-secondary);
+  }
+
+  .history-team {
+    margin-bottom: var(--space-xl);
+  }
+
+  .history-team h2 {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+  }
+</style>

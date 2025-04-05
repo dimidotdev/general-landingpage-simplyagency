@@ -1,0 +1,216 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+	title: string;
+  description?: string;
+}
+
+const { title, description = "Empresa de tecnologia especializada em desenvolvimento de software e soluções empresariais customizadas para PMEs." } = Astro.props;
+
+// Estimate header height + top margin + buffer for padding
+// Approx: 20px (top) + 2*1rem (padding) + ~2rem (line-height) + 2rem (buffer) = ~7rem + 20px
+const headerOffset = "calc(20px + 7rem)";
+---
+
+<!doctype html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title} - Nome da Empresa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+    <Header />
+		<main style={`padding-top: ${headerOffset};`}>
+      <slot />
+    </main>
+    <Footer />
+	</body>
+</html>
+<style is:global>
+	:root {
+    /* Colors */
+		--color-background: #1A1A1A;
+    --color-background-gradient-start: #1C1C1E; /* Slightly lighter shade */
+    --color-background-gradient-end: #1A1A1A;   /* Base background */
+		--color-surface: #2C2C2E;
+    /* Increased transparency for glass effect */
+    --color-surface-glass: rgba(44, 44, 46, 0.5); /* Changed alpha from 0.7 to 0.5 */
+    --color-border-glass: rgba(255, 255, 255, 0.1);
+		--color-text-primary: #E0E0E0;
+		--color-text-secondary: #A0A0A0;
+		--color-accent: #007AFF; /* Apple Blue */
+    --color-accent-hover: #0056b3;
+
+    /* Typography */
+    --font-family-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* Spacing & Radius */
+    --space-xs: 0.5rem;  /* 8px */
+    --space-sm: 1rem;    /* 16px */
+    --space-md: 1.5rem;  /* 24px */
+    --space-lg: 2rem;    /* 32px */
+    --space-xl: 3rem;    /* 48px */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+
+    /* Effects */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.15);
+	}
+
+	/* Reset & Base Styles */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+	html {
+		font-family: var(--font-family-sans);
+		background: var(--color-background); /* Base background color */
+    color: var(--color-text-primary);
+    font-size: 16px; /* Base font size */
+    scroll-behavior: smooth;
+	}
+
+  body {
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* Subtle fixed gradient background */
+    background: linear-gradient(180deg, var(--color-background-gradient-start) 0%, var(--color-background-gradient-end) 100%);
+    background-attachment: fixed;
+  }
+
+  main {
+    flex-grow: 1;
+    /* padding-top is now handled inline based on headerOffset */
+    padding-bottom: var(--space-lg); /* Keep bottom padding */
+  }
+
+  .container {
+    width: 90%;
+    max-width: 1140px; /* Max container width */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--space-sm);
+    padding-right: var(--space-sm);
+  }
+
+	h1, h2, h3, h4, h5, h6 {
+    color: var(--color-text-primary);
+    line-height: 1.2;
+    margin-bottom: var(--space-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  h1 { font-size: 2.5rem; font-weight: var(--font-weight-bold); } /* ~40px */
+  h2 { font-size: 2rem; } /* ~32px */
+  h3 { font-size: 1.5rem; } /* ~24px */
+  h4 { font-size: 1.25rem; } /* ~20px */
+
+  p {
+    margin-bottom: var(--space-md);
+    color: var(--color-text-secondary);
+  }
+
+  a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: var(--color-accent-hover);
+    text-decoration: underline;
+  }
+
+  ul, ol {
+    list-style: none;
+    padding: 0;
+  }
+
+  img, svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  button, input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+    border-radius: var(--radius-md);
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    padding: var(--space-xs) var(--space-md);
+    background-color: var(--color-accent);
+    color: white;
+    font-weight: var(--font-weight-medium);
+    transition: background-color 0.2s ease;
+  }
+
+  button:hover {
+    background-color: var(--color-accent-hover);
+  }
+
+  /* Utility Classes */
+  .text-center { text-align: center; }
+  .text-accent { color: var(--color-accent); }
+  .mb-sm { margin-bottom: var(--space-sm); }
+  .mb-md { margin-bottom: var(--space-md); }
+  .mb-lg { margin-bottom: var(--space-lg); }
+  .mt-sm { margin-top: var(--space-sm); }
+  .mt-md { margin-top: var(--space-md); }
+  .mt-lg { margin-top: var(--space-lg); }
+
+  /* Glassmorphism Style */
+  .glassmorphism {
+    background: var(--color-surface-glass); /* Uses updated variable with more transparency */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Safari */
+    border: 1px solid var(--color-border-glass);
+    border-radius: var(--radius-lg); /* Use variable for consistency */
+    /* box-shadow: var(--shadow-sm); <- Removed shadow from here, handled in Header.astro */
+  }
+
+  /* Fallback for browsers not supporting backdrop-filter */
+  @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+    .glassmorphism {
+      /* Fallback uses slightly more opaque version of the adjusted color */
+      background: rgba(44, 44, 46, 0.8); /* Adjusted fallback opacity */
+    }
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.375rem; }
+    .container { width: 95%; }
+    main {
+      /* Adjust padding-top for mobile if header size/position changes */
+      /* padding-top: calc(10px + 6rem); */ /* Example if mobile header is smaller/closer */
+    }
+  }
+
+</style>

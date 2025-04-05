@@ -1,0 +1,128 @@
+---
+const navLinks = [
+  { href: "/", label: "Início" },
+  { href: "/sobre", label: "Sobre Nós" },
+  // { href: "/servicos", label: "Serviços" }, // Add later
+  { href: "/contato", label: "Contato" },
+];
+---
+<header class="site-header glassmorphism">
+  <div class="container header-container">
+    <a href="/" class="logo">
+      <!-- Placeholder for Logo -->
+      <span class="logo-text">Empresa<span class="text-accent">Tech</span></span>
+    </a>
+    <nav class="main-nav">
+      <ul>
+        {navLinks.map(link => (
+          <li><a href={link.href} aria-current={Astro.url.pathname === link.href ? 'page' : false}>{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <!-- Mobile Menu Button (Functionality needs JS) -->
+    <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: fixed; /* Changed from sticky */
+    top: 20px; /* Added top margin */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    width: 90%; /* Floating width */
+    max-width: 1400px; /* Max width for large screens */
+    z-index: 100;
+    padding: var(--space-sm) var(--space-md); /* Increased vertical padding, added horizontal */
+    /* Glassmorphism applied via global class */
+    /* border-radius: 0; <- Removed this override */
+    border-top: none; /* Keep borders consistent */
+    border-left: none;
+    border-right: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Added specific shadow */
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Ensure container fills the header width */
+    max-width: none; /* Remove max-width from inner container */
+    padding: 0; /* Remove padding from inner container */
+    margin: 0; /* Remove margin from inner container */
+  }
+
+  .logo {
+    text-decoration: none;
+  }
+
+  .logo-text {
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+  }
+
+  .main-nav ul {
+    display: flex;
+    gap: var(--space-md);
+  }
+
+  .main-nav a {
+    text-decoration: none;
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+    padding: var(--space-xs) 0;
+    position: relative;
+    transition: color 0.2s ease;
+  }
+
+  .main-nav a:hover,
+  .main-nav a[aria-current="page"] /* Style for active page */ {
+    color: var(--color-text-primary);
+  }
+
+  .main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-accent);
+    transition: width 0.3s ease;
+  }
+
+  .main-nav a:hover::after,
+  .main-nav a[aria-current="page"]::after {
+    width: 100%;
+  }
+
+  .mobile-menu-toggle {
+    display: none; /* Hidden on desktop */
+    background: none;
+    border: none;
+    color: var(--color-text-primary);
+    padding: 0;
+  }
+
+  @media (max-width: 768px) {
+    .site-header {
+       /* Adjustments for smaller screens if needed, e.g., full width */
+       /* width: 95%; */
+       /* top: 10px; */
+       padding: var(--space-xs) var(--space-sm); /* Adjust padding */
+    }
+    .main-nav {
+      display: none; /* Hide desktop nav on mobile */
+      /* Mobile nav would typically be absolutely positioned, revealed by JS */
+    }
+    .mobile-menu-toggle {
+      display: block;
+    }
+     .logo-text {
+        font-size: 1.3rem; /* Slightly smaller logo on mobile */
+     }
+  }
+</style>
